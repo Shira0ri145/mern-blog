@@ -1,38 +1,198 @@
-.App {
+/* Importing Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
+
+/* Global Styles */
+*,
+*::before,
+*::after {
+  font-family: "Inter", "DM Sans", Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --header-bg: #211f1f;
+  --header-title-clr1: #00c2ff;
+  --header-title-clr2: #33ff8c;
+  --header-title-clr3: #ffc640;
+  --header-title-clr4: #e54cff;
+  --text-blur: 1rem;
+  --header-subtitle: clamp(1.3rem, 2vw, 2rem);
+  --fs: clamp(6rem, 9vw, 8rem);
+  --ls: clamp(-1.75px, -0.25vw, -3.5px);
+}
+
+/* Header Styles */
+.header-bg {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  background-color: var(--header-bg);
+  color: #fff;
+}
+
+.header-content {
+  margin-top: 20vh;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.header-title {
+  font-size: var(--fs);
+  font-weight: 800;
+  letter-spacing: var(--ls);
+  position: relative;
+  overflow: hidden;
+  background: var(--header-bg);
+}
+
+.header-subtitle {
+  font-size: var(--header-subtitle);
+  margin-top: 2rem;
+}
+
+.header-scrolling {
+  margin-top: 20vh;
+}
+
+.header-aurora {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  mix-blend-mode: darken;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.header-aurora-item {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  filter: blur(var(--text-blur));
+  mix-blend-mode: overlay;
+}
+
+.header-aurora-item:nth-of-type(1) {
+  top: -50%;
+  background-color: var(--header-title-clr1);
+  animation: aurora-border 6s ease-in-out infinite, aurora-1 12s ease-in-out infinite alternate;
+}
+
+.header-aurora-item:nth-of-type(2) {
+  top: 0;
+  right: 0;
+  background-color: var(--header-title-clr3);
+  animation: aurora-border 6s ease-in-out infinite, aurora-2 12s ease-in-out infinite alternate;
+}
+
+.header-aurora-item:nth-of-type(3) {
+  bottom: 0;
+  left: 0;
+  background-color: var(--header-title-clr2);
+  animation: aurora-border 6s ease-in-out infinite, aurora-3 8s ease-in-out infinite alternate;
+}
+
+.header-aurora-item:nth-of-type(4) {
+  bottom: -50%;
+  right: 0;
+  background-color: var(--header-title-clr4);
+  animation: aurora-border 6s ease-in-out infinite, aurora-4 24s ease-in-out infinite alternate;
+}
+
+/* Keyframe Animations */
+@keyframes aurora-1 {
+  0%, 100% {
+    top: 0;
+    right: 0;
+  }
+  50% {
+    top: 100%;
+    right: 75%;
+  }
+  75% {
+    top: 100%;
+    right: 25%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes aurora-2 {
+  0%, 100% {
+    top: -50%;
+    left: 0%;
+  }
+  60% {
+    top: 100%;
+    left: 75%;
+  }
+  85% {
+    top: 100%;
+    left: 25%;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes aurora-3 {
+  0%, 100% {
+    bottom: 0;
+    left: 0;
+  }
+  40% {
+    bottom: 100%;
+    left: 75%;
+  }
+  65% {
+    bottom: 40%;
+    left: 50%;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes aurora-4 {
+  0%, 100% {
+    bottom: -50%;
+    right: 0;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    bottom: 0%;
+    right: 40%;
   }
+  90% {
+    bottom: 50%;
+    right: 25%;
+  }
+}
+
+@keyframes aurora-border {
+  0%, 100% {
+    border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  }
+  25% {
+    border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
+  }
+  50% {
+    border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
+  }
+  75% {
+    border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
+  }
+}
+
+/* Section about us */
+.aboutus {
+  text-align: center;
+  margin-top: 90px;
+  color: rgb(9, 9, 9);
+  background-color: rgb(255, 255, 255);
+  width: auto;
+  height: 200px;
+}
+
+.aa {
+  margin-top: 30px;
+  color: rgb(9, 9, 9);
+  background-color: rgb(78, 145, 158);
+  width: auto;
+  height: 300px;
 }
