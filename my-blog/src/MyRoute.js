@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from "./App"
 import FromComponent from "./components/FormComponent"
-import BlogComponent from './components/BlogComponent';
+import BlogsComponent from './components/BlogsComponent';
 
 
 const MyRoute=()=>{
@@ -9,7 +9,7 @@ const MyRoute=()=>{
         <BrowserRouter>
             <Routes>
                 <Route path="/" exact Component={App}/>
-                <Route path="/blog" exact Component={BlogComponent}/>
+                <Route path="/blogs" exact Component={BlogsComponent}/>
                 <Route path="/create" exact Component={FromComponent}/>
             </Routes>
         </BrowserRouter>
