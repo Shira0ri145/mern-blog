@@ -2,6 +2,7 @@ import Navbar from './widget/navbar';
 import axios from 'axios';
 import {useState,useEffect} from "react"
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const BlogsComponent=()=>{
     const [blogs,setBlogs] = useState([])
@@ -16,6 +17,35 @@ const BlogsComponent=()=>{
     useEffect(()=>{
         fetchData()
     },[])
+
+    // Delete
+    const confirmDelete=(slug)=>{
+        Swal.fire({
+            title:"You really want to delete this blog?",
+            icon:"warning",
+            confirmButtonText: "Yes",
+            showCancelButton:true
+          }).then((result)=>{
+            // when confirm
+            if(result.isConfirmed){
+                deleteBlog(slug)
+            }
+          })
+    }
+
+    const deleteBlog=(slug)=>{
+        axios
+        .delete(`${process.env.REACT_APP_API}/blog/${slug}`)
+        .then(response=>{
+            Swal.fire({
+                icon: "success",
+                title: response.data.message,
+                showConfirmButton: false,
+                timer: 1500
+              });
+            fetchData() //ให้มันอัพเดท
+        }).catch(err=>console.log(err))
+    }
 
     return (
         <div  className="container p-5">
@@ -34,7 +64,10 @@ const BlogsComponent=()=>{
                                     </h2>
                                 </Link>
                                 <p>{blog.content.substring(0,180)} <p className='fw-bold' style={{display:'inline'}}>..อ่านต่อ</p></p>
-                                <p className='text-muted'>Author : {blog.author} , date : {blog.createdAt}</p>
+                                <p className='text-muted'>Author : {blog.author} , date : {blog.createdAt}</p> 
+                                <Link className='btn btn-outline-success' to={`/blog/edit/${blog.slug}`}> Edit </Link> &nbsp;
+                                <button className='btn btn-outline-danger' onClick={()=>confirmDelete(blog.slug)}> Delete </button>
+
 
                             </div>
 
