@@ -61,6 +61,36 @@ exports.singleBlog=(req,res)=>{
         res.status(500).json({ error: err.message });
     });
 
-    
+}
 
+exports.deleteBlog=(req,res)=>{
+    const {slug} = req.params
+    Blogs.findOneAndDelete({ slug })
+        .then(blog => {
+            if (!blog) {
+                // if not found 404
+                return res.status(404).json({ message: 'Blog not found' });
+            }
+            // if success
+            res.json({ message: 'Successfully deleted blog' });
+        })
+        .catch(err => {
+            // catch error 500
+            //console.error('Error deleting blog:', err);
+            res.status(500).json({ error: 'An error occurred while deleting the blog' });
+        });
+}
+
+exports.updateBlog=(req,res)=>{
+    const {slug} = req.params
+    // Update title content author
+    const {title, content, author} = req.body
+    Blogs.findOneAndUpdate({ slug },{title,content,author},{new:true})
+    .then(blog => {
+        res.json(blog);
+    })
+    .catch(err => {
+        console.log(err)
+    });
+        
 }
