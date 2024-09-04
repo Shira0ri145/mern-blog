@@ -64,7 +64,7 @@ const FromComponent=()=>{
                     </div>
                     <br/>
                     <input type="submit" value="Save" className="btn btn-primary" />
-                    <a href="/blog" className="btn">ยกเลิก</a>
+                    <a href="/blogs" className="btn">ยกเลิก</a>
                 </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import Navbar from './widget/navbar';
 import axios from 'axios';
 import {useState,useEffect} from "react"
+import { Link } from 'react-router-dom';
 
 const BlogsComponent=()=>{
     const [blogs,setBlogs] = useState([])
@@ -27,7 +28,11 @@ const BlogsComponent=()=>{
                     {blogs.map((blog,index)=>(
                         <div className='row' key={{index}} style={{borderBottom:'1px solid silver'}}>
                             <div className='col pt-3 pb-2'>
-                                <h2>{blog.title}</h2>
+                                <Link to={`/blog/${blog.slug}`} style={{ color: 'inherit' }}>
+                                    <h2>
+                                        {blog.title}
+                                    </h2>
+                                </Link>
                                 <p>{blog.content.substring(0,180)} <p className='fw-bold' style={{display:'inline'}}>..อ่านต่อ</p></p>
                                 <p className='text-muted'>Author : {blog.author} , date : {blog.createdAt}</p>
 
