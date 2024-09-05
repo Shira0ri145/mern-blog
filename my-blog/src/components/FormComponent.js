@@ -48,7 +48,7 @@ const FromComponent=()=>{
             <div className="pt-5"></div>
             <div className="container p-5">
                 <h1>FOrm page</h1>
-                {JSON.stringify(state)}
+                {/* {JSON.stringify(state)} */}
                 <form onSubmit={submitData}>  {/*Callback to sumbitData func*/}
                     <div className="form-group">
                         <label>Title name</label>

@@ -1,0 +1,78 @@
+/* Styling for the login wrapper */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(120deg, #fbc2eb 0%, #a6c0fe 100%); /* Gradient background */
+}
+
+.login-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 360px;
+    width: 100%;
+}
+
+.login-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form-group {
+    margin-bottom: 1.2rem;
+}
+
+.login-form-label {
+    display: block;
+    font-size: 1rem;
+    color: #555555;
+    margin-bottom: 0.5rem;
+}
+
+.login-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+.login-submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(120deg, #007bff, #0056b3); /* Gradient background */
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-submit-btn:hover {
+    background: linear-gradient(120deg, #0056b3, #003d79);
+    transform: scale(1.03);
+}
+
+.login-submit-btn:active {
+    background: linear-gradient(120deg, #003d79, #0056b3);
+    transform: scale(0.98);
+}
