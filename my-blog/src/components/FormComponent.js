@@ -2,12 +2,13 @@ import { useState } from "react";
 import Navbar from "./widget/navbar";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { getUser,getToken } from "../service/authorize";
 
 const FromComponent=()=>{
     const [state,setState] = useState({
       title:"",
       content:"",
-      author:""  
+      author:getUser()
     })
     const {title,content,author} = state
     const inputValue = name => event => {
@@ -19,7 +20,14 @@ const FromComponent=()=>{
         // ทำให้ข้อมูลใน console ยังค้างอยู่ไม่หายไป
         e.preventDefault();
         console.log("API URL = ",process.env.REACT_APP_API)
-        axios.post(`${process.env.REACT_APP_API}/create`,{title,content,author})
+        axios
+        .post(`${process.env.REACT_APP_API}/create`,
+            {title,content,author},
+            {
+                headers:{
+                    Authorization:`Bearer ${getToken()}`
+                }
+            })
         .then(response=>{
             // alert("Succesfully Save data");
             Swal.fire({

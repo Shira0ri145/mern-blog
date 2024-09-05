@@ -44,7 +44,18 @@ const LoginComponent = (props) => {
     }
 
     useEffect(()=>{
-        getUser() && navigate("/")
+        if (getUser()) {
+            // Show the alert first
+            Swal.fire({
+                icon: "error",
+                title: "You are already logged in",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                // Redirect after alert is closed
+                navigate("/");
+            });
+        }
         
     },[navigate])
 

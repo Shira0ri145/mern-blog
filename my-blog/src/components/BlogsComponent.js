@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useState,useEffect} from "react"
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { getUser } from '../service/authorize';
+import { getUser,getToken } from '../service/authorize';
 
 const BlogsComponent=()=>{
     const [blogs,setBlogs] = useState([])
@@ -36,7 +36,12 @@ const BlogsComponent=()=>{
 
     const deleteBlog=(slug)=>{
         axios
-        .delete(`${process.env.REACT_APP_API}/blog/${slug}`)
+        .delete(`${process.env.REACT_APP_API}/blog/${slug}`,
+            {
+                headers:{
+                    Authorization:`Bearer ${getToken()}`
+                }
+            })
         .then(response=>{
             Swal.fire({
                 icon: "success",
@@ -54,7 +59,9 @@ const BlogsComponent=()=>{
             <div className="container p-5">
                 <div className="container p-5">
                     <h1>Welcome to Blog</h1>
-                    <a href="/create" className="btn btn-primary" >Create Blog</a>
+                    { getUser() && (
+                        <div><Link to="/create" className="btn btn-primary" >Create Blog</Link></div>
+                    )}
                     {/* {JSON.stringify(blogs)} */}
                     {blogs.map((blog,index)=>(
                         <div className='row' key={{index}} style={{borderBottom:'1px solid silver'}}>

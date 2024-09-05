@@ -3,6 +3,7 @@ import Navbar from "./widget/navbar";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useParams } from 'react-router-dom';
+import { getToken } from "../service/authorize";
 
 const BlogEdit=()=>{
     const { slug } = useParams();
@@ -59,7 +60,12 @@ const BlogEdit=()=>{
          e.preventDefault();
          console.log("API URL = ",process.env.REACT_APP_API)
          axios
-         .put(`${process.env.REACT_APP_API}/blog/${slug}`,{title,content,author})
+         .put(`${process.env.REACT_APP_API}/blog/${slug}`,{title,content,author},
+            {
+                headers:{
+                    Authorization:`Bearer ${getToken()}`
+                }
+            })
          .then(response=>{
              // alert("Succesfully Save data");
              Swal.fire({
