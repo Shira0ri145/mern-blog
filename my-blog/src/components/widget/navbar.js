@@ -1,7 +1,9 @@
-import './navbar.css';
-import { Link } from 'react-router-dom';
+import '../Styles/navbar.css';
+import { Link,useNavigate } from 'react-router-dom';
+import { getUser,logout } from '../../service/authorize';
 
 const Navbar =()=>{
+    const navigate = useNavigate();
     return(
         <nav className="bg-nav fixed-top">
             <div className="nav-container">
@@ -10,7 +12,17 @@ const Navbar =()=>{
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/blogs">Blogs</Link></li>
                     <li><Link to="/about">About</Link></li>
-                    <li><Link to="/login" className='btn btn-outline-light px-4'> Login </Link></li>
+                    {
+                        !getUser() && (
+                            <li><Link to="/login" className='btn btn-outline-light px-4'> Login </Link></li>
+                        )
+                    }
+                    {
+                        getUser() && (
+                            <li><button className='btn btn-outline-light px-4' onClick={()=>logout(()=>navigate("/"))}> Logout </button></li>
+                        )
+                    }
+                    
                 </ul>
             </div>
         </nav>
